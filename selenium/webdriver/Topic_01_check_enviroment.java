@@ -45,5 +45,5 @@ public class Topic_01_check_enviroment {
 	public void afterClass() {
 		driver.quit();
 	}
-	// Check integration Slack and Github
+	// Check Slack and Github
 }

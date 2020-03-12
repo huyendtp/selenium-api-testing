@@ -32,7 +32,7 @@ public class Topic_05_XPath {
 		// Get element by classNam and send value to it: password
 		
 		driver.get("http://live.demoguru99.com/index.php/customer/account/login/");
-		driver.findElement(By.className("value-password")).sendKeys("password");
+		driver.findElement(By.className("validate-password")).sendKeys("password");
 		sleepTestCase(3);
 	}
 	

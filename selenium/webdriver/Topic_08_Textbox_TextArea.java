@@ -144,6 +144,6 @@ public class Topic_08_Textbox_TextArea {
 
 	@AfterClass
 	public void afterClass() {
-//		driver.quit();
+		driver.quit();
 	}
 }

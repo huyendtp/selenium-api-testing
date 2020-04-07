@@ -53,17 +53,17 @@ public class Topic_08_Textbox_TextArea {
 	@Test
 	public void TC_01_LoginAndCreateNewUser() {
 		/*
-		 * Step 1: Truy cập vào trang: http://demo.guru99.com/v4/ + Cick here + Nhập
-		 * email -> submit + Lấy thông tin UserId và Password để thực hiện tiếp step 2
-		 * Step 2: Đăng nhập với thông tin ở step 1 + Verify homepage được hiển thị
-		 * thanh công Step 3: Click chọn link new Customer Step 4: Nhập toàn bộ dữ liệu
-		 * đúng, nhấn submit Step 5: Sau khi hệ thống tạo mới customer thành công + Get
-		 * ra thông tin của Customer ID Step 6: Verify tất cả cá thông tin được tạo
-		 * thành công Step 7: Chọn menu Edit Customer -> Nhập Customer ID -> Submit Step
-		 * 8: Tại màn hình Edit Customer + Verify giá trị 2 field Customer Name và
-		 * Address đúng với dữ liệu tạo mới Step 9: Nhập lại giá trị mới tất cả các
-		 * field (trừ các field bị disable) -> Submit Step 10: Verify giá trị tất cả các
-		 * field đúng với dữ liệu sau khi Edit thành công
+		 * Step 1: Truy cập vào trang: http://demo.guru99.com/v4/ + Cick here + Nhập email -> 
+		 * 		submit + Lấy thông tin UserId và Password để thực hiện tiếp step 2
+		 * Step 2: Đăng nhập với thông tin ở step 1 + Verify homepage được hiển thị thành công 
+		 * Step 3: Click chọn link new Customer 
+		 * Step 4: Nhập toàn bộ dữ liệu đúng, nhấn submit 
+		 * Step 5: Sau khi hệ thống tạo mới customer thành công + Get ra thông tin của Customer ID 
+		 * Step 6: Verify tất cả cá thông tin được tạo thành công 
+		 * Step 7: Chọn menu Edit Customer -> Nhập Customer ID -> Submit 
+		 * Step 8: Tại màn hình Edit Customer + Verify giá trị 2 field Customer Name và Address đúng với dữ liệu tạo mới 
+		 * Step 9: Nhập lại giá trị mới tất cả các field (trừ các field bị disable) -> Submit 
+		 * Step 10: Verify giá trị tất cả các field đúng với dữ liệu sau khi Edit thành công
 		 */
 
 		String loginUrl = driver.getCurrentUrl();
@@ -129,11 +129,6 @@ public class Topic_08_Textbox_TextArea {
 		Assert.assertEquals(driver.findElement(By.xpath("//td[text()='Pin']/following-sibling::td")).getText(), pinEdit);
 		Assert.assertEquals(driver.findElement(By.xpath("//td[text()='Mobile No.']/following-sibling::td")).getText(), mobileEdit);
 		Assert.assertEquals(driver.findElement(By.xpath("//td[text()='Email']/following-sibling::td")).getText(), emailEdit);
-
-	}
-
-	@Test
-	public void TC_02() {
 
 	}
 

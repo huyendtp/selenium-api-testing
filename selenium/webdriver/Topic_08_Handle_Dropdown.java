@@ -1,5 +1,6 @@
 package webdriver;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -80,7 +81,7 @@ public class Topic_08_Handle_Dropdown {
 	
 	@Test
 	public void TC_05_Dropdown_Editable(){
-		/*s
+		/*
 		 * Step 1: Truy cập trang: http://indrimuska.github.io/jquery-editable-select/
 		 * Step 2: Chọn Second Option
 		 * Step 3: Verify giá trị vừa chọn
@@ -88,6 +89,28 @@ public class Topic_08_Handle_Dropdown {
 		driver.get("http://indrimuska.github.io/jquery-editable-select/");
 		selectItem(By.xpath("//div[@id='default-place']/input"), By.xpath("//div[@id='basic-place']//ul[@class='es-list']//li"), "Second Option");
 
+	}
+	
+	@Test
+	public void TC_06_Multiple_Selected() {
+		/*
+		 * Step 1: Vào trang: http://multiple-select.wenzhixin.net.cn/examples#basic.html
+		 * Step 2: Chuyển qua ifame để thao tác
+		 * Step 3: Chọn những tháng mong muốn
+		 * Step 4: Verify item chọn thành công
+		 * 		+ Trường hợp nhỏ hơn 3 thì hiển thị test là: January, February, March
+		 * 		+ Trường hợp lớn hơn 3 thì hiển thị số: 5 of 12 selected
+		 * 
+		 */
+		driver.get("http://multiple-select.wenzhixin.net.cn/examples#basic.html");
+		driver.switchTo().frame(driver.findElement(By.tagName("ifame")));
+		
+		String [] month = {"January", "February", "March"};
+		selectMultipleItems(By.xpath("//button[@class='ms-choice']"), 
+							By.xpath("//label[contains(text(), 'Multiple Select')]/following-sibling::div/select/option"),
+							month);
+		List<WebElement> itemsSelected = driver.findElements(By.xpath("//li[@class='selected']//input"));
+		
 	}
 	public void selectItem(By parent, By childs, String val) {
 		/*
@@ -107,12 +130,36 @@ public class Topic_08_Handle_Dropdown {
 		}
 	}
 	
+	public void selectMultipleItems(By parent, By childs, String[] values) {
+		/*
+		 * Step 1: Click dropdown cha cho hiện danh sách cần chọn
+		 * Step 2: Chọn các giá trị mong muốn
+		 */
+		driver.findElement(parent).click();
+		explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(childs));
+		List <WebElement> allItems = driver.findElements(childs);
+		
+		int count = 0;
+		for (WebElement item : allItems) {
+			for (String val: values) {
+				if (item.getText().equals(val)){
+					jsExecutor.executeScript("arguments[0].scrollIntoView(true);", item);
+					jsExecutor.executeScript("arguments[0].click();", item);
+					count  = count + 1;
+				}
+				if (count == values.length) {
+					break;
+				}
+			}
+		}
+	}
+	
 	public String getElementTextByJS(String cssLocator) {
 		// Sử dụng $ nếu browser có hỗ trợ Jquery
 		// return (String)jsExecutor.executeScript("return $(\"" + cssLocator + "\").text");
 		
-		// User DOM nếu browser có hoặc ko hỗ trợ Jquery
-		return (String)jsExecutor.executeScript("return document.querySelector(\"" + cssLocator + "\").text");
+		// Sử dụng DOM nếu browser có hoặc ko hỗ trợ Jquery
+		return (String)jsExecutor.executeScript("return document.querySelector(\"" + cssLocator + "\").textContent");
 		
 		
 	}

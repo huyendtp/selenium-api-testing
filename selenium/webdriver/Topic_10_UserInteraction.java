@@ -135,6 +135,7 @@ public class Topic_10_UserInteraction {
 		 * 		+ Đây là giá trị ở attribute class không phải dang nói đến visible của Selenium
 		 * 		+ Giá trị visible + hover chỉ được hiển thị khi mình hover chuột vào
 		 * Step 5: Click chọn Quit
+		 * Step 6: Verify alert
 		 */
 		
 		driver.get("http://swisnl.github.io/jQuery-contextMenu/demo.html");

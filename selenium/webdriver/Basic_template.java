@@ -33,6 +33,15 @@ public class Basic_template {
 	public void TC_03(){
 		
 	}
+	
+	public void sleepTestCase(long timeout) {
+		try {
+			Thread.sleep(timeout*1000);
+	    } catch(InterruptedException e){
+	    	e.printStackTrace();
+	    }
+	    	
+	    }
 
 	@AfterClass
 	public void afterClass() {

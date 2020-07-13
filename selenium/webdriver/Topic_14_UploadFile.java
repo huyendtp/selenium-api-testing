@@ -8,7 +8,7 @@ import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
-
+import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -212,8 +212,11 @@ public class Topic_14_UploadFile {
 				
 		driver.findElement(By.id("link")).click();
 		switchToWindowsByTitle("Gofile");
-		if (driver.findElement(By.xpath("//div[@aria-labelledby='swal2-title']")).isDisplayed()) {
-			driver.findElement(By.xpath("//button[text()='I have a VPN already']")).click();
+		
+		List<WebElement> buttonVPN = driver.findElements(By.xpath("//button[text()='I have a VPN already']"));
+		System.out.println("Size is " + buttonVPN.size());
+		if (buttonVPN.size()>0) {
+			buttonVPN.get(0).click();
 		}
 		
 		Assert.assertTrue(isElementDisplayed(image1, "download"));
